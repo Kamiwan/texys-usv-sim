@@ -52,7 +52,7 @@
     </link>
 
 	<link name='monodrone/camera1_link'>
-	   <pose>0.06 -0.72 1.125 0 -0.1 1.620796325</pose>
+	   <pose>0.06 -0.72 1.1 0 -0.1 1.620796325</pose>
 	   <inertial>
 	     <pose>0 0 0 0 0 0</pose>
 	     <mass>0.001</mass>
@@ -103,7 +103,7 @@
 	     <robotNamespace>/</robotNamespace>
 	     <alwaysOn>true</alwaysOn>
 	     <updateRate>0.0</updateRate>
-	     <cameraName>monodrone/camera1</cameraName>
+	     <cameraName>monodrone/right</cameraName>
 	     <imageTopicName>image_raw</imageTopicName>
 	     <cameraInfoTopicName>camera_info</cameraInfoTopicName>
 	     <frameName>camera</frameName>
@@ -123,7 +123,7 @@
 	 </joint>
 
 	<link name='monodrone/camera2_link'>
-	   <pose>-0.06 -0.72 1.125 0 -0.1 1.520796325</pose>
+	   <pose>-0.06 -0.72 1.1 0 -0.1 1.520796325</pose>
 	   <inertial>
 	     <pose>0 0 0 0 0 0</pose>
 	     <mass>0.001</mass>
@@ -171,7 +171,7 @@
 	     <robotNamespace>/</robotNamespace>
 	     <alwaysOn>true</alwaysOn>
 	     <updateRate>0.0</updateRate>
-	     <cameraName>monodrone/camera2</cameraName>
+	     <cameraName>monodrone/left</cameraName>
 	     <imageTopicName>image_raw</imageTopicName>
 	     <cameraInfoTopicName>camera_info</cameraInfoTopicName>
 	     <frameName>camera</frameName>
