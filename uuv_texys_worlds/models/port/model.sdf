@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="port">
+    <static>true</static>
+    <link name="link">
+      <collision name="port_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+	     <uri>model://port/meshes/port.stl</uri>
+	     <scale> 15 15 15</scale>
+          </mesh>      
+        </geometry>
+      </collision>
+
+      <visual name="port_visual">
+        <cast_shadows>false</cast_shadows>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+	     <uri>model://port/meshes/port.dae</uri>
+	     <scale> 15 15 15</scale> 
+          </mesh>	
+        </geometry>
+
+      </visual>
+    </link>
+  </model>
+</sdf>

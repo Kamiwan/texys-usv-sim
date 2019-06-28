@@ -1,0 +1,536 @@
+
+
+
+
+
+<?xml version="1.0" ?>
+<!-- Copyright (c) 2016 The UUV Simulator Authors.
+     All rights reserved.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<sdf version="1.4">
+  <world name="default">
+    <physics name="default_physics" default="true" type="ode">
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>100</real_time_update_rate>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>50</iters>
+          <sor>1.2</sor>
+        </solver>
+      </ode>
+    </physics>
+    <scene>
+      <ambient>0.01 0.01 0.01 1.0</ambient>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+      <shadows>1</shadows>
+    </scene>
+
+    <!--
+      Origin close to the Trondheim Biological Station, in Trondheim, Norway
+    -->
+    <spherical_coordinates>
+      <latitude_deg>63.435952</latitude_deg>
+      <longitude_deg>10.357983</longitude_deg>
+    </spherical_coordinates>
+
+    <!-- Global light source -->
+    <light type="directional" name="sun1">
+      <pose>50 0 150 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>.1 .1 .1 1</specular>
+      <direction>0.3 0.3 -1</direction>
+      <cast_shadows>false</cast_shadows>
+    </light>
+
+    <!-- Global light source -->
+    <light type="directional" name="sun_diffuse">
+      <pose>-50 0 -150 0 0 0</pose>
+      <diffuse>0.6 0.6 0.6 1</diffuse>
+      <specular>0 0 0 1</specular>
+      <direction>-0.3 -0.3 -1</direction>
+      <cast_shadows>false</cast_shadows>
+    </light>
+
+    <!-- Bounding box with sea surface -->
+    <include>
+      <uri>model://sea_bottom</uri>
+      <pose>0 0 -95 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://sand_heightmap</uri>
+      <pose>0 0 -95 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://sea_surface</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+
+   <include>
+      <uri>model://sun</uri>
+      <pose>0 0 0 0 1 1</pose>
+    </include>
+
+
+     <model name="monodrone">
+          <static>true</static>
+          <include>
+     	      <uri>model://mono_drone</uri>
+      	    <pose>81 -47 0.2 0 0 2.44159265</pose>
+     	    </include>
+     </model>	
+
+     <model name="port">
+        <static>true</static>
+        <link name="link">
+          <visual name="port_visual">
+	        <pose>0 0 -2 0 0 0</pose>
+            <geometry>
+              <mesh>
+	       <uri>model://port/meshes/port.dae</uri>
+               <scale> 15 15 15</scale> 
+              </mesh>
+            </geometry>
+          </visual>
+        </link>
+     </model>	
+
+
+
+ <model name="boat6">
+        <static>true</static>
+        <link name="link">
+          <visual name="boat6_visual">
+            <cast_shadows>false</cast_shadows>
+            <pose>-7 1 0 0 0 -1.57079633</pose>
+            <geometry>
+              <mesh>
+	        <uri>model://boat6/meshes/boat6.dae</uri>
+                <scale> 1 1 1</scale>
+              </mesh>	
+            </geometry>
+          </visual>
+        </link>
+     </model>
+ 
+     <model name="boat5">
+        <static>true</static>
+        <link name="link">
+          <visual name="boat5_visual">
+            <cast_shadows>false</cast_shadows>
+            <pose>30 1 0.5 0 0 0</pose>
+            <geometry>
+              <mesh>
+	        <uri>model://boat5/meshes/boat5.dae</uri>
+                <scale> 1.2 1.2 1.2</scale>
+              </mesh>	
+            </geometry>
+          </visual>
+        </link>
+     </model>
+
+     <!--model name="boat7">
+        <static>true</static>
+            <actor name="monodrone_2">
+           <include>
+     	    <uri>model://mono_drone_2</uri>
+     	   </include>
+	      <script>
+          <loop>true</loop>
+          <delay_start>0.000000</delay_start>
+          <auto_start>true</auto_start>
+          <trajectory id="0" type="square">
+             <waypoint>
+                <time>0.0</time>
+                <pose>6 -32 0.1 0 0 -1.3</pose>
+             </waypoint>
+             <waypoint>
+                <time>3.0</time>
+                <pose>6 -49 0.1 0 0 -1.85</pose>
+             </waypoint>
+             <waypoint>
+                <time>5.0</time>
+                <pose>-32 -53 0.1 0 0 -2.7</pose>
+             </waypoint>
+             <waypoint>
+                <time>7.0</time>
+                <pose>-44.84 -24.69 0.1 0 0 -4.442260</pose>
+             </waypoint>
+	           <waypoint>
+                <time>10.0</time>
+                <pose>-44.84 50.3832 0.1 0 0 -4.442260</pose>
+             </waypoint>
+	           <waypoint>
+                <time>13</time>
+                <pose>-45.84 50.3832 0.1 0 0 -2.0</pose>
+             </waypoint>
+	            <waypoint>
+                <time>18.0</time>
+	              <pose>-45.84 -24.69 0.1 0 0 -1.3</pose>
+             </waypoint>
+          </trajectory>
+        </script>
+     </actor>	
+     </model-->
+    
+     <model name="boat8">
+        <static>true</static>
+        <link name="link">
+          <visual name="boat8_visual">
+            <cast_shadows>false</cast_shadows>
+            <pose>-26 1 0 0 0 -1.57079633</pose>
+            <geometry>
+              <mesh>
+	        <uri>model://boat8/meshes/boat8.dae</uri>
+                <scale> 1 1 1</scale>
+              </mesh>	
+            </geometry>
+          </visual>
+        </link>
+     </model>
+
+
+           <!-- An actor -->
+      <actor name="animated_box">
+        <link name="link">
+          <visual name="visual">
+            <geometry>
+              <box>
+                <size>2 2 2</size>
+              </box>
+            </geometry>
+          </visual>
+        </link>
+         <script>
+          <loop>true</loop>
+          <delay_start>0.000000</delay_start>
+          <auto_start>true</auto_start>
+          <trajectory id="0" type="square">
+             <waypoint>
+                <time>0.0</time>
+                <pose>-1 -1 4 0 0 0</pose>
+             </waypoint>
+             <waypoint>
+                <time>1.0</time>
+                <pose>-1 1 4 0 0 0</pose>
+             </waypoint>
+             <waypoint>
+                <time>2.0</time>
+                <pose>1 1 4 0 0 0</pose>
+             </waypoint>
+             <waypoint>
+                <time>3.0</time>
+                <pose>1 -1 4 0 0 0</pose>
+             </waypoint>
+             <waypoint>
+                <time>4.0</time>
+                <pose>-1 -1 4 0 0 0</pose>
+             </waypoint>
+          </trajectory>
+        </script>
+      </actor>
+
+
+
+      <actor name="boat2">
+        <link name="link">
+          <visual name="boat2_visual">
+            <geometry>
+              <mesh>
+	       <uri>model://boat2/meshes/boat2.dae</uri>
+              </mesh>
+            </geometry>
+          </visual>
+        </link>
+        <script>
+          <loop>true</loop>
+          <auto_start>true</auto_start>
+          <trajectory id="0" type="square">
+             <waypoint>
+                <time>0.0</time>
+                <pose>256 -124 0.5 0 0 -1.85</pose>
+             </waypoint>
+             <waypoint>
+                <time>5.0</time>
+                <pose>33 -56 0.5 0 0 -1.85</pose>
+             </waypoint>
+             <waypoint>
+                <time>8.0</time>
+                <pose>33 -56 0.5 0 0 3.14159</pose>
+             </waypoint>
+             <waypoint>
+                <time>11.0</time>
+                <pose>8 26 0.5 0 0 3.1415926</pose>
+             </waypoint>
+             <waypoint>
+                <time>14.0</time>
+                <pose>8 26 0.5 0 0 -1.57079633</pose>
+             </waypoint>
+             <waypoint>
+                <time>17.0</time>
+                <pose>0 28 0.5 0 0 -1.57079633</pose>
+             </waypoint>
+          </trajectory>
+        </script>
+      </actor>
+
+     <actor name="boat1">
+        <link name="link">
+          <visual name="boat1_visual">
+            <cast_shadows>false</cast_shadows>
+            <geometry>
+              <mesh>
+	        <uri>model://boat1/meshes/boat1.dae</uri>
+                <scale> 2 2 2</scale>
+              </mesh>	
+            </geometry>
+          </visual>
+        </link>
+        <script>
+          <loop>true</loop>
+          <auto_start>true</auto_start>
+          <trajectory id="0" type="square">
+             <waypoint>
+                <time>0.0</time>
+                <pose>256 -124 0 0 0 -1.85</pose>
+             </waypoint>
+             <waypoint>
+                <time>1.0</time>
+                <pose>256 -124 0 0 0 -1.85</pose>
+             </waypoint>
+             <waypoint>
+                <time>6.0</time>
+                <pose>68 -74 0 0 0 -1.85</pose>
+             </waypoint>
+             <waypoint>
+                <time>9.0</time>
+                <pose>68 -74 0 0 0 3.14159</pose>
+             </waypoint>
+             <waypoint>
+                <time>12.0</time>
+         	<pose>71 16 0 0 0 3.14159</pose>
+             </waypoint>
+             <waypoint>
+                <time>15.0</time>
+         	<pose>71 16 0 0 0 -1.57079633</pose>
+             </waypoint>
+             <waypoint>
+                <time>17.0</time>
+         	<pose>56 16 0 0 0 -1.57079633</pose>
+             </waypoint>
+          </trajectory>
+        </script>
+     </actor>
+
+ 
+
+    <plugin name="underwater_current_plugin" filename="libuuv_underwater_current_ros_plugin.so">
+      <namespace>hydrodynamics</namespace>
+      <constant_current>
+        <topic>current_velocity</topic>
+        <velocity>
+          <mean>0</mean>
+          <min>0</min>
+          <max>5</max>
+          <mu>0.0</mu>
+          <noiseAmp>0.0</noiseAmp>
+        </velocity>
+
+        <horizontal_angle>
+          <mean>0</mean>
+          <min>-3.141592653589793238</min>
+          <max>3.141592653589793238</max>
+          <mu>0.0</mu>
+          <noiseAmp>0.0</noiseAmp>
+        </horizontal_angle>
+
+        <vertical_angle>
+          <mean>0</mean>
+          <min>-3.141592653589793238</min>
+          <max>3.141592653589793238</max>
+          <mu>0.0</mu>
+          <noiseAmp>0.0</noiseAmp>
+        </vertical_angle>
+      </constant_current>
+    </plugin>
+
+    <plugin name="sc_interface" filename="libuuv_sc_ros_interface_plugin.so"/>
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>34.6042 32.2383 -20.6633 0 0.528384 1.41245</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
+</sdf>
+
+
+
+     <!--model name="boat6">
+        <static>true</static>
+        <link name="link">
+          <visual name="boat6_visual">
+            <cast_shadows>false</cast_shadows>
+            <pose>-7 1 0 0 0 -1.57079633</pose>
+            <geometry>
+              <mesh>
+	        <uri>model://boat6/meshes/boat6.dae</uri>
+                <scale> 1 1 1</scale>
+              </mesh>	
+            </geometry>
+          </visual>
+        </link>
+     </model>
+ 
+     <model name="boat5">
+        <static>true</static>
+        <link name="link">
+          <visual name="boat5_visual">
+            <cast_shadows>false</cast_shadows>
+            <pose>30 1 0.5 0 0 0</pose>
+            <geometry>
+              <mesh>
+	        <uri>model://boat5/meshes/boat5.dae</uri>
+                <scale> 1.2 1.2 1.2</scale>
+              </mesh>	
+            </geometry>
+          </visual>
+        </link>
+     </model>
+
+     <model name="boat7">
+        <static>true</static>
+        <link name="link">
+          <visual name="boat7_visual">
+            <cast_shadows>false</cast_shadows>
+            <pose>-64 4 0.6 0 0 3.1415926</pose>
+            <geometry>
+              <mesh>
+	        <uri>model://boat7/meshes/boat7.dae</uri>
+                <scale> 2 2 2</scale>
+              </mesh>	
+            </geometry>
+          </visual>
+        </link>
+     </model>
+    
+     <model name="boat8">
+        <static>true</static>
+        <link name="link">
+          <visual name="boat8_visual">
+            <cast_shadows>false</cast_shadows>
+            <pose>-26 1 0 0 0 -1.57079633</pose>
+            <geometry>
+              <mesh>
+	        <uri>model://boat8/meshes/boat8.dae</uri>
+                <scale> 1 1 1</scale>
+              </mesh>	
+            </geometry>
+          </visual>
+        </link>
+     </model-->
+
+
+           <!-- An actor -->
+      <actor name="animated_box">
+        <link name="link">
+          <visual name="visual">
+            <geometry>
+              <box>
+                <size>2 2 2</size>
+              </box>
+            </geometry>
+          </visual>
+        </link>
+         <script>
+          <loop>true</loop>
+          <delay_start>0.000000</delay_start>
+          <auto_start>true</auto_start>
+          <trajectory id="0" type="square">
+             <waypoint>
+                <time>0.0</time>
+                <pose>-1 -1 4 0 0 0</pose>
+             </waypoint>
+             <waypoint>
+                <time>1.0</time>
+                <pose>-1 1 4 0 0 0</pose>
+             </waypoint>
+             <waypoint>
+                <time>2.0</time>
+                <pose>1 1 4 0 0 0</pose>
+             </waypoint>
+             <waypoint>
+                <time>3.0</time>
+                <pose>1 -1 4 0 0 0</pose>
+             </waypoint>
+             <waypoint>
+                <time>4.0</time>
+                <pose>-1 -1 4 0 0 0</pose>
+             </waypoint>
+          </trajectory>
+        </script>
+      </actor>
+
+     <!--actor name="monodrone_2">
+           <include>
+     	    <uri>model://mono_drone_2</uri>
+     	   </include>
+	      <script>
+          <loop>true</loop>
+          <delay_start>0.000000</delay_start>
+          <auto_start>true</auto_start>
+          <trajectory id="0" type="square">
+             <waypoint>
+                <time>0.0</time>
+                <pose>6 -32 0.1 0 0 -1.3</pose>
+             </waypoint>
+             <waypoint>
+                <time>3.0</time>
+                <pose>6 -49 0.1 0 0 -1.85</pose>
+             </waypoint>
+             <waypoint>
+                <time>5.0</time>
+                <pose>-32 -53 0.1 0 0 -2.7</pose>
+             </waypoint>
+             <waypoint>
+                <time>7.0</time>
+                <pose>-44.84 -24.69 0.1 0 0 -4.442260</pose>
+             </waypoint>
+	           <waypoint>
+                <time>10.0</time>
+                <pose>-44.84 50.3832 0.1 0 0 -4.442260</pose>
+             </waypoint>
+	           <waypoint>
+                <time>13</time>
+                <pose>-45.84 50.3832 0.1 0 0 -2.0</pose>
+             </waypoint>
+	            <waypoint>
+                <time>18.0</time>
+	              <pose>-45.84 -24.69 0.1 0 0 -1.3</pose>
+             </waypoint>
+          </trajectory>
+        </script>
+     </actor-->	
+

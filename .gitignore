@@ -1,0 +1,8 @@
+# Ignore the global catkin CMake
+CMakeLists.txt
+
+# Ignore the folder of Visual Studio Code project
+.vscode/
+
+# Ignore the install report file
+.rosinstall

@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="boat3">
+    <static>true</static>
+    <link name="link">
+      <collision name="boat3_collision">
+        <pose>0 0 0.1 0 0 0</pose>
+        <geometry>
+          <mesh>
+	     <uri>model://boat3/meshes/boat3.stl</uri>
+	    <!-- <scale> 0.01 0.01 0.01</scale> -->
+          </mesh>      
+        </geometry>
+      </collision>
+
+      <visual name="boat3_visual">
+        <cast_shadows>false</cast_shadows>
+        <pose>0 0 0.1 0 0 0</pose>
+        <geometry>
+          <mesh>
+	     <uri>model://boat3/meshes/boat3.dae</uri>
+	     <!-- <scale> 0.01 0.01 0.01</scale> -->
+          </mesh>	
+        </geometry>
+
+      </visual>
+    </link>
+  </model>
+</sdf>

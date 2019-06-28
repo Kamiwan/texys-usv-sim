@@ -1,0 +1,278 @@
+<?xml version="1.0" ?>
+<!-- Copyright (c) 2016 The UUV Simulator Authors.
+     All rights reserved.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<sdf version="1.4">
+  <world name="oceans_project">
+    <physics name="default_physics" default="true" type="ode">
+      <max_step_size>0.002</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>500</real_time_update_rate>
+    </physics>
+	<scene>
+      <ambient>0.01 0.01 0.01 1.0</ambient>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+      <shadows>0</shadows>
+    </scene>
+
+    <!-- Origin placed somewhere in the middle of the North Sea  -->
+    <spherical_coordinates>
+      <latitude_deg>56.71897669633431</latitude_deg>
+      <longitude_deg>3.515625</longitude_deg>
+    </spherical_coordinates>
+
+   
+    <!-- Virtual NED frame -->
+    <include>
+      <uri>model://ned_frame</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <!-- Bounding box with sea surface -->
+    <include>
+      <uri>model://ocean</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <!-- Heightmap -->
+    <include>
+      <uri>model://sand_heightmap</uri>
+      <pose>0 0 -95 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+      <pose>0 0 0 0 1 1</pose>
+    </include>
+
+ 
+     <model name="monodrone">
+          <static>true</static>
+          <include>
+     	      <uri>model://mono_drone</uri>
+      	    <pose>81 -47 0.1 0 0 3.14159265</pose>
+     	    </include>
+     </model>	
+
+     <model name="port">
+        <static>true</static>
+        <link name="link">
+          <visual name="port_visual">
+	    <pose>0 0 -2 0 0 0</pose>
+            <geometry>
+              <mesh>
+	       <uri>model://port/meshes/port.dae</uri>
+               <scale> 15 15 15</scale> 
+              </mesh>
+            </geometry>
+          </visual>
+        </link>
+     </model>	
+
+
+     <!--model name="boat6">
+        <static>true</static>
+        <link name="link">
+          <visual name="boat6_visual">
+            <cast_shadows>false</cast_shadows>
+            <pose>-7 1 0 0 0 -1.57079633</pose>
+            <geometry>
+              <mesh>
+	        <uri>model://boat6/meshes/boat6.dae</uri>
+                <scale> 1 1 1</scale>
+              </mesh>	
+            </geometry>
+          </visual>
+        </link>
+     </model>
+ 
+     <model name="boat5">
+        <static>true</static>
+        <link name="link">
+          <visual name="boat5_visual">
+            <cast_shadows>false</cast_shadows>
+            <pose>30 1 0.5 0 0 0</pose>
+            <geometry>
+              <mesh>
+	        <uri>model://boat5/meshes/boat5.dae</uri>
+                <scale> 1.2 1.2 1.2</scale>
+              </mesh>	
+            </geometry>
+          </visual>
+        </link>
+     </model>
+
+     <model name="boat7">
+        <static>true</static>
+        <link name="link">
+          <visual name="boat7_visual">
+            <cast_shadows>false</cast_shadows>
+            <pose>-64 4 0.6 0 0 3.1415926</pose>
+            <geometry>
+              <mesh>
+	        <uri>model://boat7/meshes/boat7.dae</uri>
+                <scale> 2 2 2</scale>
+              </mesh>	
+            </geometry>
+          </visual>
+        </link>
+     </model>
+    
+     <model name="boat8">
+        <static>true</static>
+        <link name="link">
+          <visual name="boat8_visual">
+            <cast_shadows>false</cast_shadows>
+            <pose>-26 1 0 0 0 -1.57079633</pose>
+            <geometry>
+              <mesh>
+	        <uri>model://boat8/meshes/boat8.dae</uri>
+                <scale> 1 1 1</scale>
+              </mesh>	
+            </geometry>
+          </visual>
+        </link>
+     </model-->
+
+
+           <!-- An actor -->
+      <actor name="animated_box">
+        <link name="link">
+          <visual name="visual">
+            <geometry>
+              <box>
+                <size>2 2 2</size>
+              </box>
+            </geometry>
+          </visual>
+        </link>
+         <script>
+          <loop>true</loop>
+          <delay_start>0.000000</delay_start>
+          <auto_start>true</auto_start>
+          <trajectory id="0" type="square">
+             <waypoint>
+                <time>0.0</time>
+                <pose>-1 -1 4 0 0 0</pose>
+             </waypoint>
+             <waypoint>
+                <time>1.0</time>
+                <pose>-1 1 4 0 0 0</pose>
+             </waypoint>
+             <waypoint>
+                <time>2.0</time>
+                <pose>1 1 4 0 0 0</pose>
+             </waypoint>
+             <waypoint>
+                <time>3.0</time>
+                <pose>1 -1 4 0 0 0</pose>
+             </waypoint>
+             <waypoint>
+                <time>4.0</time>
+                <pose>-1 -1 4 0 0 0</pose>
+             </waypoint>
+          </trajectory>
+        </script>
+      </actor>
+
+     <!--actor name="monodrone_2">
+           <include>
+     	    <uri>model://mono_drone_2</uri>
+     	   </include>
+	      <script>
+          <loop>true</loop>
+          <delay_start>0.000000</delay_start>
+          <auto_start>true</auto_start>
+          <trajectory id="0" type="square">
+             <waypoint>
+                <time>0.0</time>
+                <pose>6 -32 0.1 0 0 -1.3</pose>
+             </waypoint>
+             <waypoint>
+                <time>3.0</time>
+                <pose>6 -49 0.1 0 0 -1.85</pose>
+             </waypoint>
+             <waypoint>
+                <time>5.0</time>
+                <pose>-32 -53 0.1 0 0 -2.7</pose>
+             </waypoint>
+             <waypoint>
+                <time>7.0</time>
+                <pose>-44.84 -24.69 0.1 0 0 -4.442260</pose>
+             </waypoint>
+	           <waypoint>
+                <time>10.0</time>
+                <pose>-44.84 50.3832 0.1 0 0 -4.442260</pose>
+             </waypoint>
+	           <waypoint>
+                <time>13</time>
+                <pose>-45.84 50.3832 0.1 0 0 -2.0</pose>
+             </waypoint>
+	            <waypoint>
+                <time>18.0</time>
+	              <pose>-45.84 -24.69 0.1 0 0 -1.3</pose>
+             </waypoint>
+          </trajectory>
+        </script>
+     </actor-->	
+
+
+
+
+    <plugin name="underwater_current_plugin" filename="libuuv_underwater_current_ros_plugin.so">
+      <namespace>hydrodynamics</namespace>
+      <constant_current>
+        <topic>current_velocity</topic>
+        <velocity>
+          <mean>0</mean>
+          <min>0</min>
+          <max>5</max>
+          <mu>0.0</mu>
+          <noiseAmp>0.0</noiseAmp>
+        </velocity>
+
+        <horizontal_angle>
+          <mean>0</mean>
+          <min>-3.141592653589793238</min>
+          <max>3.141592653589793238</max>
+          <mu>0.0</mu>
+          <noiseAmp>0.0</noiseAmp>
+        </horizontal_angle>
+
+        <vertical_angle>
+          <mean>0</mean>
+          <min>-3.141592653589793238</min>
+          <max>3.141592653589793238</max>
+          <mu>0.0</mu>
+          <noiseAmp>0.0</noiseAmp>
+        </vertical_angle>
+      </constant_current>
+    </plugin>
+
+    <plugin name="sc_interface" filename="libuuv_sc_ros_interface_plugin.so"/>
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>34.6042 32.2383 -20.6633 0 0.528384 1.41245</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
+</sdf>
