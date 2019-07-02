@@ -88,12 +88,19 @@
 
 
      <model name="monodrone">
-          <static>true</static>
+          <static>false</static>
           <include>
      	      <uri>model://mono_drone</uri>
       	    <pose>81 -47 0.2 0 0 2.44159265</pose>
      	    </include>
-     </model>	
+     </model>
+
+      <!-- uuv boat -->
+    <include>
+      <uri>model://aurora_static</uri>
+      <pose>0 140 0 0 0 0</pose>
+    </include>
+
 
      <model name="port">
         <static>true</static>
@@ -110,8 +117,7 @@
         </link>
      </model>	
 
-
-
+  
  <model name="boat6">
         <static>true</static>
         <link name="link">
